@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Student Information</h1>
+<table border="1px solid black">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Operation</th>
+    </tr>
+    {% for student in view_student %}
+    <tr>
+        <td>{{ student.id }}</td>
+        <td>{{ student.first_name }} {{ student.last_name }}</td>
+        <td> <a href="{% url 'student:studentDetails' student_id=student.id %}">view</a>
+        <a href="{% url 'student:editStudent' student_id=student.id %}">edit</a>
+        <a href="{% url 'student:deleteStudent' student_id=student.id %}">delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
