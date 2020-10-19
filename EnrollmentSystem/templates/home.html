@@ -2,8 +2,21 @@
 
 {% block content %}
 
-<h1>Student Information</h1>
-<table border="1px solid black">
+<h1 class="bg-success text-center m-3 p-2">Student Information</h1>
+{% if messages %}
+    
+    {% for delete_message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ delete_message }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    
+    {% endfor %}
+
+    {% endif %}
+<table class="table table-striped">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -13,9 +26,9 @@
     <tr>
         <td>{{ student.id }}</td>
         <td>{{ student.first_name }} {{ student.last_name }}</td>
-        <td> <a href="{% url 'student:studentDetails' student_id=student.id %}">view</a>
-        <a href="{% url 'student:editStudent' student_id=student.id %}">edit</a>
-        <a href="{% url 'student:deleteStudent' student_id=student.id %}">delete</a></td>
+        <td> <a class="btn btn-success" href="{% url 'student:studentDetails' student_id=student.id %}">Profile</a>
+        <a class="btn btn-primary" href="{% url 'student:editStudent' student_id=student.id %}">Edit</a>
+        <a class="btn btn-danger" href="{% url 'student:deleteStudent' student_id=student.id %}">Delete</a></td>
     </tr>
     {% endfor %}
 </table>
