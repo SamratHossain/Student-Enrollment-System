@@ -6,7 +6,7 @@ from django.contrib import messages
 # Create your views here.
 
 def home(request):
-    view_student = Students.objects.all()
+    view_student = Students.objects.order_by('id')
     return render(request, 'home.html',{'view_student':view_student, 'title':"Home"})
 
 def addStudent(request):
