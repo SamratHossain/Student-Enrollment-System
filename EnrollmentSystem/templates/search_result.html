@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <h2 class="bg-success m-2 text-center p-2">Search Result</h2>
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Operation</th>
+        </tr>
+        {% for student in search_student %}
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.first_name }} {{ student.last_name }}</td>
+            <td> <a class="btn btn-success" href="{% url 'student:studentDetails' student_id=student.id %}">Profile</a>
+            <a class="btn btn-primary" href="{% url 'student:editStudent' student_id=student.id %}">Edit</a>
+            <a class="btn btn-danger" href="{% url 'student:deleteStudent' student_id=student.id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

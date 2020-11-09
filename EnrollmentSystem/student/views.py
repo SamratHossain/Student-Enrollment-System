@@ -43,3 +43,8 @@ def deleteStudent(request, student_id):
     messages.success(request, "Deleted Successfully!")
     return home(request)
 
+def searchStudent(request):
+    if request.method == 'GET':
+        search = request.GET['search']
+        search_student = Students.objects.filter(first_name__icontains=search)
+    return render(request, 'search_result.html',{'search_student':search_student})
